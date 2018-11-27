@@ -11,8 +11,8 @@
   [file]
   (if (and (.exists (io/file file)) (not (.isDirectory (io/file file))))
     (cond
-      (strs/ends-with? file ".json") (spit (strs/replace file #".json" ".yml") (yaml/generate-string (json/read-str (slurp file))))
-      (strs/ends-with? file ".yaml") (spit (strs/replace file #".yaml" ".json") (json/write-str (yaml/parse-string (slurp file))))
+      (strs/ends-with? file ".json") (spit (strs/replace file #"\.json$" ".yaml") (yaml/generate-string (json/read-str (slurp file))))
+      (strs/ends-with? file ".yaml") (spit (strs/replace file #"\.yaml$" ".json") (json/write-str (yaml/parse-string (slurp file))))
       :else (log/info "Unknown extension for:" file))
     (log/info "File not found or is a directory.")))
 
