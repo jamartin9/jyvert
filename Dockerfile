@@ -3,7 +3,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 COPY project.clj /usr/src/app/
 RUN lein deps
-COPY . /usr/src/app
+COPY src /usr/src/app/src
 RUN mv "$(lein uberjar | sed -n 's/^Created \(.*standalone\.jar\)/\1/p')" app-standalone.jar
 
 FROM jam/graal as native

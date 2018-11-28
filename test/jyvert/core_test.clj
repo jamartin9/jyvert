@@ -5,14 +5,6 @@
 
 (deftest test-convert
   "Test convert function conversion and condition hanlding"
-  (testing "Tests convert function for json to yaml equality"
-    (convert "test/resources/json/test.json")
-    (is (= (slurp "test/resources/json/test.yaml") (slurp "test/resources/yaml/test.yaml")))
-    (io/delete-file "test/resources/json/test.yaml"))
-  (testing "Tests convert function for yaml to json equality"
-    (convert "test/resources/yaml/test.yaml")
-    (is (= (slurp "test/resources/yaml/test.json") (slurp "test/resources/json/test.json")))
-    (io/delete-file "test/resources/yaml/test.json"))
   (testing "Tests convert function on a directory"
     (convert "test/resources")
     (is (.isDirectory (io/file "test/resources"))))
@@ -24,6 +16,14 @@
     (convert "test/resources/INVALID.yml")
     (is (not (.exists (io/file "test/resources/INVALID.json"))))
     (io/delete-file "test/resources/INVALID.yml")))
+
+(deftest test-convert-yaml
+  (testing "Tests convert function for json to yaml equality"
+    (is (= (convert-yaml "test/resources/yaml/test.yaml") (slurp "test/resources/json/test.json")))))
+
+  (deftest test-convert-json
+    (testing "Tests convert function for yaml to json equality"
+      (is (= (convert-json "test/resources/json/test.json") (slurp "test/resources/yaml/test.yaml")))))
 
 (deftest test-main
   "Test that no exceptions are thrown from main"

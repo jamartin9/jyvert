@@ -6,15 +6,32 @@
   (:require [clojure.string :as strs])
   (:require [clojure.tools.logging :as log]))
 
+(defn convert-yaml
+  "yaml file to json string"
+  [file]
+  (-> file
+      (slurp)
+      (yaml/parse-string)
+      (json/write-str)))
+
+(defn convert-json
+  "json file to yaml string"
+  [file]
+  (-> file
+      (slurp)
+      (json/read-str)
+      (yaml/generate-string)))
+
 (defn convert
   "Converts yaml to json and json to yaml"
   [file]
   (if (and (.exists (io/file file)) (not (.isDirectory (io/file file))))
     (cond
-      (strs/ends-with? file ".json") (spit (strs/replace file #"\.json$" ".yaml") (yaml/generate-string (json/read-str (slurp file))))
-      (strs/ends-with? file ".yaml") (spit (strs/replace file #"\.yaml$" ".json") (json/write-str (yaml/parse-string (slurp file))))
+      (strs/ends-with? file ".json") (spit (strs/replace file #"\.json$" ".yaml") (convert-json file))
+      (strs/ends-with? file ".yaml") (spit (strs/replace file #"\.yaml$" ".json") (convert-yaml file))
       :else (log/info "Unknown extension for:" file))
     (log/info "File not found or is a directory.")))
+
 
 (defn -main
   "Converts file path cli arguments to either .json or .yaml files."
