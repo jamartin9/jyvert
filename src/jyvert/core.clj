@@ -30,7 +30,7 @@
       (strs/ends-with? file ".json") (spit (strs/replace file #"\.json$" ".yaml") (convert-json file))
       (strs/ends-with? file ".yaml") (spit (strs/replace file #"\.yaml$" ".json") (convert-yaml file))
       :else (log/info "Unknown extension for:" file))
-    (log/info "File not found or is a directory.")))
+    (log/info "File not found or is a directory:" file)))
 
 
 (defn -main

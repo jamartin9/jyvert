@@ -1,0 +1,8 @@
+[
+    {
+        "name": "org.yaml.snakeyaml.Yaml",
+        "methods": [
+            { "name": "<init>", "parameterTypes": ["org.yaml.snakeyaml.constructor.BaseConstructor"] }
+        ]
+    }
+]
