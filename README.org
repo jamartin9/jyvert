@@ -11,7 +11,7 @@
 *** Requirements
     - lein
 *** Build
-    - ~lein uberjar~ will create ~target/uberjar/jyvert-x.x.x-SNAPSHOT-standalone.jar~
+    - ~lein uberjar~ will create ~target/uberjar/jyvert-x.x.x-standalone.jar~
 *** Usage
     - ~java -jar jyvert-standalone.jar file.yaml file2.json~ will produce ~file.json~ and ~file2.yaml~
     - ~lein run file.yaml file2.yaml~ will produce ~file.json~ and ~file2.yaml~
