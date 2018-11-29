@@ -3,7 +3,7 @@ FROM ubuntu
 ENV GRAALVM_V=1.0.0-rc9
 
 WORKDIR /tmp
-
+# libz + gcc static for image compilation
 RUN apt-get update && apt-get install -y wget gcc libz-dev
 
 RUN wget --quiet https://github.com/oracle/graal/releases/download/vm-${GRAALVM_V}/graalvm-ce-${GRAALVM_V}-linux-amd64.tar.gz \

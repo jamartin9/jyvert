@@ -9,7 +9,7 @@ RUN mv "$(lein uberjar | sed -n 's/^Created \(.*standalone\.jar\)/\1/p')" app-st
 FROM jam/graal as native
 WORKDIR /tmp
 COPY --from=builder /usr/src/app/app-standalone.jar ./
-# graal reflection json config for snakeyaml
+# graal reflection json config for snakeyaml.
 COPY graal.json .
 RUN graalvm-ce-${GRAALVM_V}/bin/native-image \
   --no-server \
