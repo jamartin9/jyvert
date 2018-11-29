@@ -1,0 +1,17 @@
+* Simple CLI application to convert YAML/JSON files each other
+** Setup Linux
+*** Requirements
+    - Docker >= 17.05
+    - Make
+*** Build
+    - ~make~ will create the graalvm image, build the clojure source, statically aot compile and copy the output to ~target/app-standalone~
+*** Usage
+     - ~target/app-standalone file.yaml file2.json~ will produce ~file.json~ and ~file2.yaml~
+** Setup cross platform
+*** Requirements
+    - lein
+*** Build
+    - ~lein uberjar~ will create ~target/uberjar/jyvert-x.x.x-SNAPSHOT-standalone.jar~
+*** Usage
+    - ~java -jar jyvert-standalone.jar file.yaml file2.json~ will produce ~file.json~ and ~file2.yaml~
+    - ~lein run file.yaml file2.yaml~ will produce ~file.json~ and ~file2.yaml~

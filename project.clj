@@ -1,6 +1,6 @@
 (defproject jyvert "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+  :description "Simple JSON/YAML cli converter"
+  :url "http://github.com/jamartin9/jyvert"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [

@@ -11,7 +11,7 @@ DOCKER_NAME = $(DOCKER_PREFIX)/$(DOCKER_IMG_NAME):$(DOCKER_BUILD_VERSION)
 DOCKER_BUILDER_NAME = $(DOCKER_PREFIX)/$(DOCKER_BUILDER_IMG_NAME):$(DOCKER_BUILDER_VERSION)
 
 DOCKER_BUILD_DIR=.
-DOCKER_BUILDER_DIR=./docker-builder
+DOCKER_BUILDER_DIR=docker-builder/
 
 DOCKER_BUILD_CMD=$(DOCKER) build -t $(DOCKER_NAME) $(DOCKER_BUILD_DIR)
 DOCKER_BUILDER_CMD=$(DOCKER) build -t $(DOCKER_BUILDER_NAME) $(DOCKER_BUILDER_DIR)
@@ -21,7 +21,8 @@ OUTPUT_FILE=app-standalone
 OUTPUT_DIRECTORY=target/
 OUTPUT=$(OUTPUT_DIRECTORY)$(OUTPUT_FILE)
 
-.PHONY: clean build build-base
+# TODO: link sources of clj/Dockerfiles to rebuild properly and not rely docker cache.
+.PHONY: clean all build build-base
 
 all: $(OUTPUT)
 
