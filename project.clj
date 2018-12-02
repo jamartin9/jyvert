@@ -15,4 +15,5 @@
   ; reduces binary size
   :jvm-opts ["-Dclojure.compiler.direct-linking=true"]
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}})
+  :profiles { :uberjar {:aot :all}
+              :dev {:dependencies [[org.clojure/test.check "0.9.0"]]}})
